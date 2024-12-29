@@ -1,4 +1,4 @@
-Feature: Validar que el campo "Full name" acepte mínimo 2 palabras
+Feature: Verificar que el email cumpla con el formato estandar
 Scenario: El botón "Sign up" permanece deshabilitado cuando solo se ingresa una palabra en el campo "Full name"
   Given El usuario accede a la página de registro "https://test-qa.inlaze.com/auth/sign-up"
   And El formulario de registro está accesible
