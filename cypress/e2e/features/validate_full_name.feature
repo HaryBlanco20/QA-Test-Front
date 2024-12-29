@@ -16,5 +16,5 @@ Scenario: El botón "Sign up" se habilita cuando se ingresan dos palabras en el 
   When El usuario ingresa "Juan Pérez" en el campo "Full name"
   And El usuario ingresa "juan.perez@example.com" en el campo "Email"
   And El usuario ingresa "Password123!" en el campo "Password"
-  And El usuario ingresa "Pasword123!" en el campo "Repeat your password"
+  And El usuario ingresa "Password123!" en el campo "Repeat your password"
   Then El botón "Sign up" se habilita
