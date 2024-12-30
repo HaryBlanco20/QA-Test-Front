@@ -21,10 +21,8 @@ And("El usuario hace clic en el botón {string}", () => {
 
 Then("El usuario es redirigido a la página principal de la plataforma {string}", () => {
   LoginPage.verifyRedirectionToHomepage()
-  cy.wait(1000)
 })
 
 And("El sistema muestra el nombre de usuario {string}", (userName) => {
   LoginPage.checkUserName(userName)
-  cy.wait(1000)
 })
