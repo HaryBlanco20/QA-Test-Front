@@ -1,6 +1,5 @@
 // pageObjects/registrationPage.js
 
-
 class RegistrationPage{
     visit(){
         cy.visit("https://test-qa.inlaze.com/auth/sign-up")
