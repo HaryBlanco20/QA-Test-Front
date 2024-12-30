@@ -18,7 +18,7 @@ When("El usuario ingresa {string} en el campo {string}", (inputValue, fieldName)
   cy.wait(300)
 })
 
-And("El usuario hace clic en el botón {string}", () => {
+And("El usuario da clic en el botón {string}", () => {
   cy.get('[type="submit"]').click()
 })
 

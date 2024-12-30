@@ -8,7 +8,7 @@ Scenario: Validar que se pueda registrar un usuario con nombre, email y contrase
   And El usuario ingresa "juan.perez@example.com" en el campo "Email"
   And El usuario ingresa "Password123*" en el campo "Password"
   And El usuario ingresa "Password123*" en el campo "Repeat your password"
-  And El usuario hace clic en el botón "Sign up"
+  And El usuario da clic en el botón "Sign up"
   Then El sistema debe permitir completar el registro correctamente
   And El usuario debe ver el mensaje "Successful registration" 
   And El usuario debe ser redirigido a la página de inicio de sesión en "https://test-qa.inlaze.com/auth/sign-in"

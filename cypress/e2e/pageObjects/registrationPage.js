@@ -20,6 +20,7 @@ class RegistrationPage{
     chechFormVisibility(){
         cy.get("form.flex.flex-col.mb-4").should("be.visible")
     }
+    
     checkFieldEnabled(fieldName){
         if(fieldName === "Full Name"){
             cy.get("#full-name").should("be.enabled")
@@ -57,47 +58,45 @@ class RegistrationPage{
           })
       }
       
-
-    /*checkButtonState(isEnabled){
-        const button = cy.get(".btn.btn-primary")
-        if(isEnabled){
-            button.should("not.be.disabled")
-            .then(()=>{
-                cy.log("¡El botón 'Sign Up' está habilitado como se esperaba")
-              })
-            } else {    
-                button.should("be.disabled")
-                .then(()=>{
-                    cy.log("¡El botón 'Sign Up' está deshabilitado como se esperaba")
-                  })
-            } 
-    }*/
-
-            checkButtonState(isEnabled) {
-                const button = cy.get(".btn.btn-primary");
-            
-                // Verificar si el botón está deshabilitado o habilitado
-                button.then(($btn) => {
-                    const isButtonEnabled = !$btn.is(":disabled")// Verifica si el botón está habilitado
-            
-                    if (isButtonEnabled && !isEnabled) {
-                        // Si el botón está habilitado cuando no debería estarlo
-                        cy.log("ERROR: El botón 'Sign Up' no debería estar habilitado.")
-                        throw new Error("El botón 'Sign Up' debería estar deshabilitado, pero está habilitado, por lo tanto el escenario falla.");
-                    } else if (!isButtonEnabled && isEnabled) {
-                        // Si el botón está deshabilitado cuando debería estar habilitado (esto no debería pasar si el test es correcto)
-                        cy.log("ERROR: El botón 'Sign Up' debería estar habilitado.")
-                        throw new Error("El botón 'Sign Up' debería estar habilitado, pero está deshabilitado.")
-                    } else if (!isButtonEnabled && !isEnabled) {
-                        // Si el botón está deshabilitado como se esperaba
-                        cy.log("¡El botón 'Sign Up' está deshabilitado como se esperaba!")
-                    } else {
-                        // Si el botón está habilitado como se esperaba
-                        cy.log("¡El botón 'Sign Up' está habilitado como se esperaba!")
-                    }
-                })
+    checkButtonState(isEnabled) {
+        const button = cy.get(".btn.btn-primary");
+        button.then(($btn) => {
+            const isButtonEnabled = !$btn.is(":disabled")
+            if (isButtonEnabled && !isEnabled) {
+                cy.log("ERROR: El botón 'Sign Up' no debería estar habilitado.")
+                throw new Error("El botón 'Sign Up' debería estar deshabilitado, pero está habilitado, por lo tanto el escenario falla.");
+            } else if (!isButtonEnabled && isEnabled) {
+                // Si el botón está deshabilitado cuando debería estar habilitado (esto no debería pasar si el test es correcto)
+                cy.log("ERROR: El botón 'Sign Up' debería estar habilitado.")
+                throw new Error("El botón 'Sign Up' debería estar habilitado, pero está deshabilitado.")
+            } else if (!isButtonEnabled && !isEnabled) {
+                // Si el botón está deshabilitado como se esperaba
+                cy.log("¡El botón 'Sign Up' está deshabilitado como se esperaba!")
+            } else {
+                // Si el botón está habilitado como se esperaba
+                cy.log("¡El botón 'Sign Up' está habilitado como se esperaba!")
             }
+        })
+    }
     
+    checkPasswordMatchError() {
+        // Verificar que el botón "Sign up" esté deshabilitado
+        cy.get('button[type="submit"]').should('be.disabled'); // Asegúrate de usar el selector correcto para el botón
+      
+        // Verificar que el mensaje de error esté visible y contiene el texto esperado
+        cy.get('.label-text-alt')
+          .should('be.visible') // El mensaje de error debe ser visible
+          .then(($toast) => {
+            const message = $toast.text().trim(); // Obtener el texto del mensaje de error
+            if (message !== "Passwords do not match") {
+              throw new Error(`La prueba falló. El sistema permitió registrar al usuario. El mensaje mostrado fue: ${message}`)
+            }else{
+                cy.log("¡No es posible continuar con el registro ya que las contraseñas no coinciden!")
+            }
+        })
+    }
+      
+
     verifySucessfulRegistration(){
         cy.url().should("include", "/auth/sign-in")
     }
