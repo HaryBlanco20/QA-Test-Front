@@ -48,6 +48,6 @@ Una vez que todo esté instalado y configurado, puedes ejecutar las pruebas de l
 
 Esto abrirá la interfaz de usuario de Cypress, donde podrás seleccionar y ejecutar las pruebas de manera visual.
 
-2. 
+
 
 
