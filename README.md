@@ -48,6 +48,10 @@ Una vez que todo esté instalado y configurado, puedes ejecutar las pruebas de l
 
 Esto abrirá la interfaz de usuario de Cypress, donde podrás seleccionar y ejecutar las pruebas de manera visual.
 
+#Documentación
 
+# Documentación
 
+[Casos de prueba](Casos_de_prueba.pdf)
+[Automatización  de Casos de prueba con Cypress](/Automatización_de_Casos_de_prueba_con_Cypress.pdf)
 
