@@ -52,6 +52,6 @@ Esto abrirá la interfaz de usuario de Cypress, donde podrás seleccionar y ejec
 
 # Documentación
 
-[Casos de prueba](Casos_de_prueba.pdf)
-[Automatización  de Casos de prueba con Cypress](/Automatización_de_Casos_de_prueba_con_Cypress.pdf)
+[Casos de prueba](Documentacion/Casos_de_prueba.pdf)
+[Automatización  de Casos de prueba con Cypress](Documentacion//Automatizacion_de_Casos_de_prueba_con_Cypress.pdf)
 
