@@ -5,7 +5,7 @@ Feature: Registro exitoso de usuario con datos válidos
 Scenario: Validar que se pueda registrar un usuario con nombre, email y contraseñas válidos
   Given El usuario navega a la URL del formulario de registro "https://test-qa.inlaze.com/auth/sign-up"
   When El usuario ingresa "Juan Perez" en el campo "Full name"
-  When El usuario ingresa "juan.perez@example.com" en el campo "Email"
+  And El usuario ingresa "juan.perez@example.com" en el campo "Email"
   And El usuario ingresa "Password123*" en el campo "Password"
   And El usuario ingresa "Password123*" en el campo "Repeat your password"
   And El usuario hace clic en el botón "Sign up"

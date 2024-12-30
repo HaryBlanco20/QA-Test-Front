@@ -7,7 +7,7 @@ Scenario: El botón "Sign up" permanece deshabilitado cuando solo se ingresa una
   And El usuario ingresa "juan.perez@example.com" en el campo "Email"
   And El usuario ingresa "Password123!" en el campo "Password"
   And El usuario ingresa "Password123!" en el campo "Repeat your password"
-  Then El botón "Sign up" está deshabilitado
+  Then El botón "Sign up" debe estar deshabilitado
 
 Scenario: El botón "Sign up" se habilita cuando se ingresan dos palabras en el campo "Full name"
   Given El usuario accede a la página de registro "https://test-qa.inlaze.com/auth/sign-up"

@@ -32,11 +32,33 @@ class RegistrationPage{
         }
     }
 
+    checkFieldSelector(fieldName){
+        const selectors = {
+            "Full Name": "#full-name",
+            "Email": "#email",
+            "Password": ".join > #password",
+            "Confirm Password": ".join > #confirm-password"
+        }
+        return selectors[fieldName]
+    }
+
     clickSubmitButton(){
         cy.get('[type="submit"]').click()
-    }   
+    }
 
-    checkButtonState(isEnabled){
+    checkDuplicateEmailError() {
+        cy.get('app-toast > .flex')
+          .should('be.visible') 
+          .then(($toast) => {
+            const message = $toast.text().trim(); // Obtén el texto del mensaje de error
+            if (message !== "Email inválido") {
+              throw new Error(`La prueba falló. El sistema permitió registrar al usuario`); 
+            }
+          })
+      }
+      
+
+    /*checkButtonState(isEnabled){
         const button = cy.get(".btn.btn-primary")
         if(isEnabled){
             button.should("not.be.disabled")
@@ -48,9 +70,34 @@ class RegistrationPage{
                 .then(()=>{
                     cy.log("¡El botón 'Sign Up' está deshabilitado como se esperaba")
                   })
-            }    
-    }
+            } 
+    }*/
 
+            checkButtonState(isEnabled) {
+                const button = cy.get(".btn.btn-primary");
+            
+                // Verificar si el botón está deshabilitado o habilitado
+                button.then(($btn) => {
+                    const isButtonEnabled = !$btn.is(":disabled")// Verifica si el botón está habilitado
+            
+                    if (isButtonEnabled && !isEnabled) {
+                        // Si el botón está habilitado cuando no debería estarlo
+                        cy.log("ERROR: El botón 'Sign Up' no debería estar habilitado.")
+                        throw new Error("El botón 'Sign Up' debería estar deshabilitado, pero está habilitado, por lo tanto el escenario falla.");
+                    } else if (!isButtonEnabled && isEnabled) {
+                        // Si el botón está deshabilitado cuando debería estar habilitado (esto no debería pasar si el test es correcto)
+                        cy.log("ERROR: El botón 'Sign Up' debería estar habilitado.")
+                        throw new Error("El botón 'Sign Up' debería estar habilitado, pero está deshabilitado.")
+                    } else if (!isButtonEnabled && !isEnabled) {
+                        // Si el botón está deshabilitado como se esperaba
+                        cy.log("¡El botón 'Sign Up' está deshabilitado como se esperaba!")
+                    } else {
+                        // Si el botón está habilitado como se esperaba
+                        cy.log("¡El botón 'Sign Up' está habilitado como se esperaba!")
+                    }
+                })
+            }
+    
     verifySucessfulRegistration(){
         cy.url().should("include", "/auth/sign-in")
     }

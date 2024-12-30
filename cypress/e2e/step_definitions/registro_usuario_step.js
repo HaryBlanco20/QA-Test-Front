@@ -32,4 +32,7 @@ And("El usuario debe ver el mensaje {string}", (message) => {
 
 And("El usuario debe ser redirigido a la página de inicio de sesión en {string}", () => {
   cy.url().should("include", "/auth/sign-in")
+  .then(()=>{
+    cy.log("¡El usuario ha sido registrado exitosamente!")
+  })
 })
